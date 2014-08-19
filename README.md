@@ -4,6 +4,9 @@ Flappy GBA
 Flappy Bird clone for the GBA
 
 
+![screenshot](https://cloud.githubusercontent.com/assets/6157348/3974334/2fa7a4ce-27f3-11e4-8f92-b759f82ace82.png)
+
+
 How do I build this?
 -----------
 
