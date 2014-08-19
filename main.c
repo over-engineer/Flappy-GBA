@@ -1,16 +1,16 @@
-/**********************************************\
-*																					    *
-*       					Flappy GBA								  *
-*				          version 0.1		              *
-*																					    *
-*					Flappy Bird clone for the GBA				*
-*																					    *
+/************************************************\
+* 						*
+* 		  Flappy GBA 			*
+* 		  version 0.1 			*
+* 						*
+*	Flappy Bird clone for the GBA		*
+* 						*
 * *******************************************	*
-*																					    *
-*						   	Developed by dn0z							*
-*          				August, 2014         				*
-*																					    *
-\**********************************************/
+* 						*
+* 		Developed by dn0z 		*
+* 		  August, 2014 			*
+* 						*
+\************************************************/
 
 #include "gba.h"
 #include "screenmode.h"
@@ -27,9 +27,9 @@
 #include "snd\swooshing.c"
 
 // configuration
-#define LAND_STARTING_Y 									133
+#define LAND_STARTING_Y 			133
 #define DISTANCE_BETWEEN_TOP_BOT_PIPES 		40
-#define SPACE_BETWEEN_PIPE_SETS 					32
+#define SPACE_BETWEEN_PIPE_SETS 		32
 
 #define CEILING_POS(X) ((X-(int)(X)) > 0 ? (int)(X+1) : (int)(X))
 
@@ -62,7 +62,7 @@ void DrawBackground(void);
 void DrawLand(int frame);
 void DrawTitle(void);
 void DrawAllPipes(void);
-void DrawPipe(int pipeX, int h, int pointing);								// if the pipe is pointing up, the pointing variable has a value of 0
+void DrawPipe(int pipeX, int h, int pointing); 					// if the pipe is pointing up, the pointing variable has a value of 0
 void DrawBird(int birdX, int birdY, int frame);
 
 void Collisions(int birdY);
@@ -102,12 +102,12 @@ int main(void) {
 	int landAnimationFrame = 0;
 	
 	// physics
-	int jumpSpeed = 35;										        // positive constant, resets whenever we press A
-	int fallingConstant = 80;								      // positive constant, accelerates the bird on each update
-	int framesPerSecond = 30;								      // frames per second to calculate delta time
+	int jumpSpeed = 35; 					// positive constant, resets whenever we press A
+	int fallingConstant = 80; 				// positive constant, accelerates the bird on each update
+	int framesPerSecond = 30; 				// frames per second to calculate delta time
 	
-	float deltaTime = 1.0f / framesPerSecond;		  // delta time for the physics, we use 1.0f to get a float from the division operator
-	float vertSpeed = 0;										      // TODO: Tweak the above values to get a more natural bird movement
+	float deltaTime = 1.0f / framesPerSecond; 		// delta time for the physics, we use 1.0f to get a float from the division operator
+	float vertSpeed = 0; 					// TODO: Tweak the above values to get a more natural bird movement
 	float tmp;
 	
 	// init pipes height
@@ -145,7 +145,7 @@ int main(void) {
 			DrawTitle();
 			
 			if (birdY > 70) {
-				vertSpeed = jumpSpeed;			// jump
+				vertSpeed = jumpSpeed; 		// jump
 			}
 			
 			if (!((*KEYS) & KEY_START)) {
@@ -372,7 +372,7 @@ void DrawBird(int birdX, int birdY, int frame) {
 	int loopsX = bird_WIDTH / 2;
 	int loopsY = bird_HEIGHT / 4;
 	
-	int animationOffset = frame * (bird_HEIGHT / 4);			// how many vertical pixels to skip for that frame of the animation
+	int animationOffset = frame * (bird_HEIGHT / 4); 		// how many vertical pixels to skip for that frame of the animation
 	
 	for (y = 0; y < loopsY; y++) {
 		for (x = 0; x < loopsX; x++) {
@@ -457,12 +457,12 @@ void WaitForVblank(void) {
 void Flip(void) {
 	if (REG_DISPCNT & BACKBUFFER) {
 		// back buffer is the current buffer
-		REG_DISPCNT &= ~BACKBUFFER;             // flips active buffer to front buffer by clearing back buffer bit
-		videoBuffer = BackBuffer;               // points the drawing buffer to the back buffer
+		REG_DISPCNT &= ~BACKBUFFER; 			// flips active buffer to front buffer by clearing back buffer bit
+		videoBuffer = BackBuffer; 			// points the drawing buffer to the back buffer
 	} else {
 		// front buffer is the current buffer
-		REG_DISPCNT |= BACKBUFFER;			        // flips active buffer to back buffer by setting the back buffer bit
-		videoBuffer = FrontBuffer;					    // points the drawing buffer to the front buffer
+		REG_DISPCNT |= BACKBUFFER; 			// flips active buffer to back buffer by setting the back buffer bit
+		videoBuffer = FrontBuffer; 			// points the drawing buffer to the front buffer
 	}
 }
 
